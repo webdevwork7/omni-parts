@@ -37,7 +37,7 @@ const Parts = () => {
       brand: "Wagner",
       price: 89.99,
       originalPrice: 119.99,
-      image: "https://images.unsplash.com/photo-1558618644-fcd25c85cd64?w=400&h=300&fit=crop&crop=center",
+      image: "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=400&h=300&fit=crop",
       rating: 4.8,
       reviews: 156,
       category: "Brakes",
@@ -50,7 +50,7 @@ const Parts = () => {
       brand: "Fram",
       price: 24.99,
       originalPrice: 32.99,
-      image: "https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=400&h=300&fit=crop&crop=center",
+      image: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=400&h=300&fit=crop",
       rating: 4.9,
       reviews: 243,
       category: "Filters",
@@ -63,7 +63,7 @@ const Parts = () => {
       brand: "NGK",
       price: 45.99,
       originalPrice: 59.99,
-      image: "https://images.unsplash.com/photo-1625047509248-ec889cbff17f?w=400&h=300&fit=crop&crop=center",
+      image: "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=400&h=300&fit=crop",
       rating: 4.7,
       reviews: 98,
       category: "Engine",
@@ -76,7 +76,7 @@ const Parts = () => {
       brand: "Mann-Filter",
       price: 19.99,
       originalPrice: 25.99,
-      image: "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=400&h=300&fit=crop&crop=center",
+      image: "https://images.unsplash.com/photo-1558618644-fcd25c85cd64?w=400&h=300&fit=crop",
       rating: 4.6,
       reviews: 187,
       category: "Filters",
@@ -89,7 +89,7 @@ const Parts = () => {
       brand: "Philips",
       price: 129.99,
       originalPrice: 159.99,
-      image: "https://images.unsplash.com/photo-1625047509013-64ab3f4ca812?w=400&h=300&fit=crop&crop=center",
+      image: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=400&h=300&fit=crop",
       rating: 4.9,
       reviews: 324,
       category: "Lighting",
@@ -102,7 +102,7 @@ const Parts = () => {
       brand: "Monroe",
       price: 78.99,
       originalPrice: 95.99,
-      image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&h=300&fit=crop&crop=center",
+      image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&h=300&fit=crop",
       rating: 4.5,
       reviews: 142,
       category: "Suspension",
@@ -115,25 +115,25 @@ const Parts = () => {
     {
       name: "Engine Parts",
       icon: Settings,
-      image: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=300&h=200&fit=crop&crop=center",
+      image: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=400&h=250&fit=crop",
       count: "350+ parts"
     },
     {
       name: "Brake Components",
       icon: Shield,
-      image: "https://images.unsplash.com/photo-1558618644-fcd25c85cd64?w=300&h=200&fit=crop&crop=center",
+      image: "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=400&h=250&fit=crop",
       count: "220+ parts"
     },
     {
       name: "Electrical Systems",
       icon: Zap,
-      image: "https://images.unsplash.com/photo-1625047509013-64ab3f4ca812?w=300&h=200&fit=crop&crop=center",
+      image: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=400&h=250&fit=crop",
       count: "180+ parts"
     },
     {
       name: "Suspension Parts",
       icon: Car,
-      image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=300&h=200&fit=crop&crop=center",
+      image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&h=250&fit=crop",
       count: "160+ parts"
     }
   ];
@@ -178,6 +178,11 @@ const Parts = () => {
                         src={category.image} 
                         alt={category.name}
                         className="w-full h-32 object-cover group-hover:scale-105 transition-transform duration-300"
+                        loading="eager"
+                        onError={(e) => {
+                          console.log(`Failed to load category image: ${category.image}`);
+                          e.currentTarget.src = "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=400&h=250&fit=crop";
+                        }}
                       />
                       <div className="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-20 transition-opacity"></div>
                       <div className="absolute top-3 right-3 bg-white p-2 rounded-full">
@@ -305,6 +310,11 @@ const Parts = () => {
                         src={part.image} 
                         alt={part.name} 
                         className="w-full h-48 object-cover rounded-t-lg"
+                        loading="eager"
+                        onError={(e) => {
+                          console.log(`Failed to load part image: ${part.image}`);
+                          e.currentTarget.src = "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=400&h=300&fit=crop";
+                        }}
                       />
                       {!part.inStock && (
                         <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center rounded-t-lg">

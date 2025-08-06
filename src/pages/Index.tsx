@@ -1,3 +1,4 @@
+
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import HeroForm from "@/components/HeroForm";
@@ -32,7 +33,7 @@ const Index = () => {
       name: "Brake Pads Set",
       price: "$89.99",
       originalPrice: "$119.99",
-      image: "https://images.unsplash.com/photo-1558618644-fcd25c85cd64?w=400&h=300&fit=crop&crop=center",
+      image: "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=400&h=300&fit=crop",
       rating: 4.8,
       reviews: 156,
       category: "Brakes"
@@ -42,7 +43,7 @@ const Index = () => {
       name: "Engine Oil Filter",
       price: "$24.99",
       originalPrice: "$32.99",
-      image: "https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=400&h=300&fit=crop&crop=center",
+      image: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=400&h=300&fit=crop",
       rating: 4.9,
       reviews: 243,
       category: "Engine"
@@ -52,7 +53,7 @@ const Index = () => {
       name: "Spark Plugs (4-Pack)",
       price: "$45.99",
       originalPrice: "$59.99",
-      image: "https://images.unsplash.com/photo-1625047509248-ec889cbff17f?w=400&h=300&fit=crop&crop=center",
+      image: "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=400&h=300&fit=crop",
       rating: 4.7,
       reviews: 98,
       category: "Engine"
@@ -62,7 +63,7 @@ const Index = () => {
       name: "Air Filter",
       price: "$19.99",
       originalPrice: "$25.99",
-      image: "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=400&h=300&fit=crop&crop=center",
+      image: "https://images.unsplash.com/photo-1558618644-fcd25c85cd64?w=400&h=300&fit=crop",
       rating: 4.6,
       reviews: 187,
       category: "Filters"
@@ -74,28 +75,28 @@ const Index = () => {
       name: "Engine Parts", 
       icon: Settings, 
       count: "250+",
-      image: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=300&h=200&fit=crop&crop=center",
+      image: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=400&h=250&fit=crop",
       description: "High-performance engine components"
     },
     { 
       name: "Brake System", 
       icon: Shield, 
       count: "180+",
-      image: "https://images.unsplash.com/photo-1558618644-fcd25c85cd64?w=300&h=200&fit=crop&crop=center",
+      image: "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=400&h=250&fit=crop",
       description: "Complete brake solutions for safety"
     },
     { 
       name: "Electrical", 
       icon: Zap, 
       count: "320+",
-      image: "https://images.unsplash.com/photo-1625047509013-64ab3f4ca812?w=300&h=200&fit=crop&crop=center",
+      image: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=400&h=250&fit=crop",
       description: "Wiring, batteries & electrical parts"
     },
     { 
       name: "Suspension", 
       icon: Car, 
       count: "160+",
-      image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=300&h=200&fit=crop&crop=center",
+      image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&h=250&fit=crop",
       description: "Smooth ride suspension components"
     }
   ];
@@ -172,12 +173,36 @@ const Index = () => {
   ];
 
   const brands = [
-    { name: "Toyota", logo: "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=120&h=60&fit=crop&crop=center" },
-    { name: "Ford", logo: "https://images.unsplash.com/photo-1612544409025-0daa7aa2e9a5?w=120&h=60&fit=crop&crop=center" },
-    { name: "Honda", logo: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=120&h=60&fit=crop&crop=center" },
-    { name: "Chevrolet", logo: "https://images.unsplash.com/photo-1617654112368-307921291f42?w=120&h=60&fit=crop&crop=center" },
-    { name: "BMW", logo: "https://images.unsplash.com/photo-1617654112368-307921291f42?w=120&h=60&fit=crop&crop=center" },
-    { name: "Mercedes", logo: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=120&h=60&fit=crop&crop=center" }
+    { 
+      name: "Toyota", 
+      logo: "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=200&h=100&fit=crop",
+      description: "Reliable automotive excellence since 1937"
+    },
+    { 
+      name: "Ford", 
+      logo: "https://images.unsplash.com/photo-1612544409025-0daa7aa2e9a5?w=200&h=100&fit=crop",
+      description: "Built Ford Tough - American innovation"
+    },
+    { 
+      name: "Honda", 
+      logo: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=200&h=100&fit=crop",
+      description: "The power of dreams in motion"
+    },
+    { 
+      name: "BMW", 
+      logo: "https://images.unsplash.com/photo-1617654112368-307921291f42?w=200&h=100&fit=crop",
+      description: "The ultimate driving machine"
+    },
+    { 
+      name: "Mercedes-Benz", 
+      logo: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=200&h=100&fit=crop",
+      description: "The best or nothing"
+    },
+    { 
+      name: "Chevrolet", 
+      logo: "https://images.unsplash.com/photo-1617654112471-da48d2363cb1?w=200&h=100&fit=crop",
+      description: "Find new roads with Chevy"
+    }
   ];
 
   const emergencyServices = [
@@ -294,6 +319,11 @@ const Index = () => {
                         src={category.image} 
                         alt={category.name}
                         className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+                        loading="eager"
+                        onError={(e) => {
+                          console.log(`Failed to load image: ${category.image}`);
+                          e.currentTarget.src = "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=400&h=250&fit=crop";
+                        }}
                       />
                       <div className="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-20 transition-opacity duration-300"></div>
                       <div className="absolute top-4 right-4 bg-white p-3 rounded-full shadow-lg">
@@ -361,6 +391,11 @@ const Index = () => {
                     src={part.image} 
                     alt={part.name} 
                     className="w-full h-48 object-cover rounded-t-lg"
+                    loading="eager"
+                    onError={(e) => {
+                      console.log(`Failed to load image: ${part.image}`);
+                      e.currentTarget.src = "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=400&h=300&fit=crop";
+                    }}
                   />
                   <div className="p-4">
                     <Badge className="mb-2 bg-red-100 text-red-800">{part.category}</Badge>
@@ -388,24 +423,74 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Trusted Brands Section */}
-      <section className="py-16 bg-gray-100">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">Trusted by Leading Brands</h2>
-            <p className="text-lg text-gray-600">We carry parts from the world's most trusted automotive manufacturers</p>
+      {/* Trusted Brands Section - Completely Redesigned */}
+      <section className="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1920&h=1080&fit=crop')] bg-cover bg-center opacity-10"></div>
+        <div className="relative max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-red-600 rounded-full mb-6">
+              <Award className="w-8 h-8 text-white" />
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              Trusted by <span className="text-red-400">Leading Brands</span>
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              We're proud partners with the world's most trusted automotive manufacturers, 
+              ensuring you get genuine, high-quality parts for your vehicle.
+            </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {brands.map((brand, index) => (
-              <div key={index} className="flex items-center justify-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                <img 
-                  src={brand.logo} 
-                  alt={brand.name}
-                  className="max-h-12 max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
-                />
-              </div>
+              <Card key={index} className="group bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105">
+                <CardContent className="p-8 text-center">
+                  <div className="relative mb-6 overflow-hidden rounded-xl">
+                    <img 
+                      src={brand.logo} 
+                      alt={brand.name}
+                      className="w-full h-24 object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                      loading="eager"
+                      onError={(e) => {
+                        console.log(`Failed to load brand image: ${brand.logo}`);
+                        e.currentTarget.src = "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=200&h=100&fit=crop";
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-red-400 transition-colors">
+                    {brand.name}
+                  </h3>
+                  <p className="text-gray-300 text-sm leading-relaxed">
+                    {brand.description}
+                  </p>
+                  <div className="mt-6 pt-4 border-t border-white/20">
+                    <div className="flex items-center justify-center space-x-1">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
+                      ))}
+                      <span className="ml-2 text-sm text-gray-300">Premium Partner</span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             ))}
+          </div>
+
+          <div className="text-center mt-16">
+            <div className="inline-flex items-center space-x-8 bg-white/10 backdrop-blur-sm rounded-full px-8 py-4">
+              <div className="flex items-center space-x-2">
+                <CheckCircle className="w-5 h-5 text-green-400" />
+                <span className="text-sm font-medium">Authorized Dealer</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Shield className="w-5 h-5 text-blue-400" />
+                <span className="text-sm font-medium">Genuine Parts</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Award className="w-5 h-5 text-yellow-400" />
+                <span className="text-sm font-medium">Warranty Included</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -492,6 +577,10 @@ const Index = () => {
                       src={testimonial.image} 
                       alt={testimonial.name}
                       className="w-12 h-12 rounded-full mr-4"
+                      onError={(e) => {
+                        console.log(`Failed to load testimonial image: ${testimonial.image}`);
+                        e.currentTarget.src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face";
+                      }}
                     />
                     <div>
                       <p className="font-semibold text-gray-800">{testimonial.name}</p>
