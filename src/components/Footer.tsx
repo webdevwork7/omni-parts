@@ -111,7 +111,7 @@ const Footer = () => {
 
         <div className="border-t border-gray-700 mt-8 pt-8 text-center">
           <p className="text-gray-300">
-            © 2024 {brandConfig.name}. All rights reserved. | Designed for automotive excellence.
+            © 2025 {brandConfig.name}. All rights reserved. | Designed for automotive excellence.
           </p>
         </div>
       </div>
