@@ -1,4 +1,3 @@
-
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import HeroForm from "@/components/HeroForm";
@@ -20,7 +19,6 @@ import {
   MapPin,
   Phone,
   Gauge,
-  Tool,
   Cog,
   Battery,
   Thermometer
