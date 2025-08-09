@@ -12,15 +12,26 @@ serve(async (req) => {
   }
 
   try {
+    console.log('Edge function called');
     const { fullName, phoneNumber, vehicleMakeModel, requiredPartService } = await req.json()
 
     console.log('Received email request:', { fullName, phoneNumber, vehicleMakeModel, requiredPartService });
 
-    // Create email content
-    const emailContent = {
-      from: 'webdevwork7@gmail.com',
+    // Using Gmail SMTP with nodemailer-like approach for Deno
+    const emailData = {
       to: 'webdevwork7@gmail.com',
+      from: 'webdevwork7@gmail.com',
       subject: 'New Parts Quote Request - OmniParts',
+      text: `
+        New parts quote request received:
+        
+        Customer Name: ${fullName}
+        Phone Number: ${phoneNumber}
+        Vehicle: ${vehicleMakeModel}
+        Required Part/Service: ${requiredPartService}
+        
+        Please contact the customer as soon as possible.
+      `,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #dc2626;">New Parts Quote Request</h2>
@@ -35,70 +46,55 @@ serve(async (req) => {
           </p>
         </div>
       `
-    }
-
-    // Use Gmail SMTP to send email
-    const smtpData = {
-      personalizations: [
-        {
-          to: [{ email: 'webdevwork7@gmail.com' }],
-          subject: 'New Parts Quote Request - OmniParts'
-        }
-      ],
-      from: { email: 'webdevwork7@gmail.com' },
-      content: [
-        {
-          type: 'text/html',
-          value: emailContent.html
-        }
-      ]
     };
 
-    // Using SMTP.js service for sending emails
-    const emailResponse = await fetch('https://smtpjs.com/v3/smtpjs.aspx', {
+    // Send email using Gmail SMTP
+    const emailResponse = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Type': 'application/json',
       },
-      body: new URLSearchParams({
-        'SecureToken': 'C973D7AD-F097-4B95-91F4-40ABC5567812',
-        'To': 'webdevwork7@gmail.com',
-        'From': 'webdevwork7@gmail.com',
-        'Subject': 'New Parts Quote Request - OmniParts',
-        'Body': `
-          New parts quote request received:
-          
-          Customer Name: ${fullName}
-          Phone Number: ${phoneNumber}
-          Vehicle: ${vehicleMakeModel}
-          Required Part/Service: ${requiredPartService}
-          
-          Please contact the customer as soon as possible.
-        `
+      body: JSON.stringify({
+        service_id: 'gmail',
+        template_id: 'template_contact',
+        user_id: 'your-emailjs-user-id',
+        template_params: {
+          to_email: 'webdevwork7@gmail.com',
+          from_email: 'webdevwork7@gmail.com',
+          subject: 'New Parts Quote Request - OmniParts',
+          message: emailData.text,
+          html_message: emailData.html
+        }
       })
     });
 
-    console.log('SMTP response status:', emailResponse.status);
-    
-    return new Response(
-      JSON.stringify({ 
-        success: true, 
-        message: 'Email sent successfully!' 
-      }),
-      { 
-        headers: { 
-          ...corsHeaders, 
-          'Content-Type': 'application/json' 
-        } 
-      }
-    )
+    console.log('Email API response status:', emailResponse.status);
+
+    if (emailResponse.ok) {
+      console.log('Email sent successfully');
+      return new Response(
+        JSON.stringify({ 
+          success: true, 
+          message: 'Email sent successfully!' 
+        }),
+        { 
+          headers: { 
+            ...corsHeaders, 
+            'Content-Type': 'application/json' 
+          } 
+        }
+      )
+    } else {
+      throw new Error('Email sending failed');
+    }
 
   } catch (error) {
     console.error('Error sending email:', error)
     return new Response(
       JSON.stringify({ 
         success: false, 
-        error: 'Failed to send email' 
+        error: 'Failed to send email',
+        details: error.message 
       }),
       { 
         status: 500,
