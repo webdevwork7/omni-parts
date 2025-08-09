@@ -1,6 +1,5 @@
 
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -15,16 +14,7 @@ serve(async (req) => {
   try {
     const { fullName, phoneNumber, vehicleMakeModel, requiredPartService } = await req.json()
 
-    // Email configuration
-    const emailConfig = {
-      host: 'smtp.gmail.com',
-      port: 587,
-      secure: false,
-      auth: {
-        user: 'webdevwork7@gmail.com',
-        pass: 'cusx pyau ezij hfvh'
-      }
-    }
+    console.log('Received email request:', { fullName, phoneNumber, vehicleMakeModel, requiredPartService });
 
     // Create email content
     const emailContent = {
@@ -47,48 +37,49 @@ serve(async (req) => {
       `
     }
 
-    // Use Deno's built-in fetch to send email via SMTP API service
-    const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+    // Use Gmail SMTP to send email
+    const smtpData = {
+      personalizations: [
+        {
+          to: [{ email: 'webdevwork7@gmail.com' }],
+          subject: 'New Parts Quote Request - OmniParts'
+        }
+      ],
+      from: { email: 'webdevwork7@gmail.com' },
+      content: [
+        {
+          type: 'text/html',
+          value: emailContent.html
+        }
+      ]
+    };
+
+    // Using SMTP.js service for sending emails
+    const emailResponse = await fetch('https://smtpjs.com/v3/smtpjs.aspx', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: JSON.stringify({
-        service_id: 'gmail',
-        template_id: 'template_1',
-        user_id: 'public_key',
-        template_params: {
-          from_name: fullName,
-          from_email: 'webdevwork7@gmail.com',
-          to_email: 'webdevwork7@gmail.com',
-          subject: 'New Parts Quote Request - OmniParts',
-          message: `
-            Customer Name: ${fullName}
-            Phone: ${phoneNumber}
-            Vehicle: ${vehicleMakeModel}
-            Required Part/Service: ${requiredPartService}
-          `
-        }
+      body: new URLSearchParams({
+        'SecureToken': 'C973D7AD-F097-4B95-91F4-40ABC5567812',
+        'To': 'webdevwork7@gmail.com',
+        'From': 'webdevwork7@gmail.com',
+        'Subject': 'New Parts Quote Request - OmniParts',
+        'Body': `
+          New parts quote request received:
+          
+          Customer Name: ${fullName}
+          Phone Number: ${phoneNumber}
+          Vehicle: ${vehicleMakeModel}
+          Required Part/Service: ${requiredPartService}
+          
+          Please contact the customer as soon as possible.
+        `
       })
-    })
+    });
 
-    // Alternative approach using a simple SMTP relay
-    const smtpResponse = await fetch('https://smtp-relay-service.vercel.app/api/send', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        to: 'webdevwork7@gmail.com',
-        subject: 'New Parts Quote Request - OmniParts',
-        html: emailContent.html,
-        auth: {
-          user: 'webdevwork7@gmail.com',
-          pass: 'cusx pyau ezij hfvh'
-        }
-      })
-    })
-
+    console.log('SMTP response status:', emailResponse.status);
+    
     return new Response(
       JSON.stringify({ 
         success: true, 

@@ -53,7 +53,7 @@ const HeroForm = () => {
   return (
     <div className="bg-white rounded-lg shadow-xl p-6 border border-gray-200">
       <div className="text-center mb-6">
-        <h3 className="text-2xl font-bold text-gray-800 mb-2">Get Your Parts Quote</h3>
+        <h3 className="text-2xl font-bold text-gray-800 mb-2">Submit Request</h3>
         <p className="text-gray-600">Fill out the form and we'll get back to you quickly</p>
       </div>
 
@@ -66,7 +66,7 @@ const HeroForm = () => {
             placeholder="Full Name"
             value={formData.fullName}
             onChange={handleInputChange}
-            className="pl-10"
+            className="pl-10 text-black placeholder:text-gray-500"
             required
           />
         </div>
@@ -79,7 +79,7 @@ const HeroForm = () => {
             placeholder="Phone Number"
             value={formData.phoneNumber}
             onChange={handleInputChange}
-            className="pl-10"
+            className="pl-10 text-black placeholder:text-gray-500"
             required
           />
         </div>
@@ -92,7 +92,7 @@ const HeroForm = () => {
             placeholder="Vehicle Make & Model (e.g., 2020 Toyota Camry)"
             value={formData.vehicleMakeModel}
             onChange={handleInputChange}
-            className="pl-10"
+            className="pl-10 text-black placeholder:text-gray-500"
             required
           />
         </div>
@@ -104,7 +104,7 @@ const HeroForm = () => {
             placeholder="Required Part or Service (e.g., Brake pads, Oil change, Engine repair)"
             value={formData.requiredPartService}
             onChange={handleInputChange}
-            className="pl-10 min-h-[100px]"
+            className="pl-10 min-h-[100px] text-black placeholder:text-gray-500"
             required
           />
         </div>
