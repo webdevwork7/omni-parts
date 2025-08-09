@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { brandConfig } from "@/config/brand";
 import { toast } from "sonner";
+import { sendEmail } from "@/utils/emailService";
 
 const HeroForm = () => {
   const [formData, setFormData] = useState({
@@ -14,17 +15,35 @@ const HeroForm = () => {
     vehicleMakeModel: "",
     requiredPartService: ""
   });
+  
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    toast.success("Thank you! We'll contact you soon.");
-    setFormData({ fullName: "", phoneNumber: "", vehicleMakeModel: "", requiredPartService: "" });
+    setIsSubmitting(true);
+    
+    try {
+      console.log("Sending email with data:", formData);
+      
+      const success = await sendEmail(formData);
+      
+      if (success) {
+        toast.success("Thank you! Your request has been sent successfully.");
+        setFormData({ fullName: "", phoneNumber: "", vehicleMakeModel: "", requiredPartService: "" });
+      } else {
+        throw new Error('Failed to send email');
+      }
+    } catch (error) {
+      console.error("Error sending email:", error);
+      toast.error("Sorry, there was an error sending your request. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleCallNow = () => {
@@ -93,9 +112,10 @@ const HeroForm = () => {
         <div className="flex flex-col sm:flex-row gap-3">
           <Button 
             type="submit" 
-            className="flex-1 bg-red-600 hover:bg-red-700 text-white"
+            disabled={isSubmitting}
+            className="flex-1 bg-red-600 hover:bg-red-700 text-white disabled:opacity-50"
           >
-            Get Quote
+            {isSubmitting ? "Submitting..." : "Submit"}
           </Button>
           <Button 
             type="button" 
